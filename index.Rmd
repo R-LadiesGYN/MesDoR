@@ -1,0 +1,2055 @@
+---
+title: "R Básico"
+subtitle: "⚔<br/>com xaringan"
+author: "Larissa Sayuri Futino Castro dos Santos"
+institute: "Rladies Gyn"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["rladies", "rladies-fonts", "css/style.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  #echo = FALSE,
+  fig.align = "center"
+  #message = FALSE,
+  #warning = FALSE,
+  #cache = TRUE
+)
+```
+
+---
+# Larissa Sayuri Futino Castro dos Santos
+
+- Filha da Matico e do Gilberto. 
+
+- Brasiliense, com muito orgulho. 
+
+- Escolhi trabalhar com dados e só recentemente entrei no mundo da tecnologia.
+
+- Bacharel (UnB), Mestre (UFMG) e Doutora (UFMG) em Estatística 
+
+- Cientista de Dados na Sympla 
+
+- A minha grande paixão é desmistificar IA, 
+me encantando no meio do processo.
+
+- Amo papelaria, sempre.
+
+- Amo cozinhar, no inverno.
+
+- Amo ler, no verão
+
+- Empoderada por mulheres para estar aqui
+
+- [https://www.linkedin.com/in/larissa-sayuri-santos/](https://www.linkedin.com/in/larissa-sayuri-santos/)
+
+---
+
+# Projeto Animal
+
+1. Associação de voluntários particular
+
+1. Priorizar casos mais urgentes
+
+1. Preservar as condições mínimas de sobrevivência dos animais já abrigados 
+
+1. Se vc pôde doar: obrigada!
+
+```{r, out.width="60%", fig.cap="<center><b>Logo: <a href='https://projetoanimal.com.br/'>https://projetoanimal.com.br/</a></b></center>", echo = FALSE}
+knitr::include_graphics("imagens/projetoAnimal_gatos.jpeg")
+```
+
+
+---
+
+class: middle
+
+# Pré-requisitos
+
+### Rstudio cloud
+- Acesse: https://rstudio.cloud/
+
+### R
+- Disponível em: https://cran.r-project.org/
+
+### RStudio
+- Disponível em: https://www.rstudio.com/products/rstudio/download/
+
+
+---
+
+background-image: url("imagens/agenda_branco.png")
+background-position: 40% 40%
+class: center, bottom, inverse
+
+---
+
+# Aproveite
+
+Começar a programar é desafiador.
+
+Serão apresentados muitos conceitos, pacotes e funções.
+
+Não ache que a gente sabe tudo/Não caia na cilada do _infoxication_!
+
+A ideia é te dar um panorama de tudo o que você pode fazer.
+
+```{r, out.width="35%", echo=FALSE,fig.cap="<center><b>Divirta-se! Ou tente!</b></center>"}
+knitr::include_graphics("https://media.giphy.com/media/oy83DwqHRcR1jJczV3/giphy.gif")
+```
+
+---
+
+class: center, middle
+
+.pull-left[
+
+## Ciência de Dados
+
+"Área **interdisciplinar** para análise de dados que visa transformar dados em:
+
+1. conhecimento, 
+
+1. insights, 
+
+1. tomadas de decisão*"
+
+## Profissional de Dados
+
+Capazes de:
+
+1. utilizar as ferramentas de manipulação de dados e
+
+1. que forneçam o apoio necessário nas tomadas de decisão
+
+]
+
+.pull-right[
+
+```{r, out.width="75%", fig.cap="<center><b>Fonte: <a href='https://images.app.goo.gl/Lrghc9B3XPEAQ3iZ7'>LoriLewis</a></b></center>", echo = FALSE}
+knitr::include_graphics("imagens/2020_internetInAMinute.jpg")
+
+```
+
+]
+---
+
+# Computação Estatística
+
+“O R é uma linguagem pensada para ser utilizada por Estatísticos, especialmente em tarefas de computação estatística. É conhecido como a _lingua franca for Statistics_”.
+
+.pull-left[
+
+“O R é ótimo para:
+
+1. Aprendizado de Máquina, 
+
+2. Visualização de Dados e 
+
+3. Análise de Dados 
+
+além de algumas áreas de Computação Científica”
+
+[https://data-flair.training/blogs/why-learn-r/](https://data-flair.training/blogs/why-learn-r/)
+
+]
+
+.pull-right[
+```{r, out.width="100%", echo=FALSE,fig.cap="<center><b>R, seu lindu!</b></center>"}
+knitr::include_graphics("https://media.giphy.com/media/26FPC5oAdfeFPkQQE/giphy.gif")
+```
+]
+
+---
+
+class: middle
+
+# Vantagens
+
+.pull-left[
+
+```{r, out.width="100%", echo=FALSE,fig.cap="<center><b>Contribua!</b></center>"}
+#knitr::include_graphics("https://media.giphy.com/media/9iv4ErObYQvrW/giphy.gif")
+knitr::include_graphics("https://media.giphy.com/media/1fgLkB8QIZO5KdQLL8/giphy.gif")
+```
+
+]
+
+.pull-right[
+
+## _Free & open source_
+
+1. Não há limitantes de custo. 
+
+1. Não há restrições para o seu uso.
+
+1. Como é aberto para a comunidade contribuir, torna-se uma ferramenta plural.
+
+1. Ferramenta que pode ser atualizada a tempo contínuo de modo a contemplar técnicas, algoritmos mais modernos.
+
+]
+
+---
+
+# Grande Comunidade
+
+“Usualmente, o R tem sido usado na Academia. 
+Mas com o surgimento e crescimento da Ciência de Dados, o R tem sido utilizado em indústrias, inclusive a indústria 4.0”
+[https://data-flair.training/blogs/why-learn-r/](https://data-flair.training/blogs/why-learn-r/)
+
+“Quanto maior a comunidade de uma linguagem de programação, maior o suporte que vc provavelmente terá”
+[http://www.bestprogramminglanguagefor.me/why-learn-r](http://www.bestprogramminglanguagefor.me/why-learn-r)
+
+
+```{r, out.width="35%", echo=FALSE, fig.cap="<center><b>Contribua!</b></center>"}
+knitr::include_graphics("imagens/trab_colab.png")
+```
+---
+
+# Indústrias variadas
+
+.pull-left[
+É utilizada no:
+
+1. mercado financeiro,
+
+1. indústria farmacêutica, 
+
+1. dados genéticos, 
+
+1. pesquisas epidemiológicas, 
+
+1. avaliação de políticas públicas, 
+
+1. controle de qualidade de processos industriais, 
+
+1. avaliações educacionais, 
+
+1. dentre outras áreas.
+
+]
+
+.pull-right[
+
+
+O uso do R é uma habilidade com potencial de retorno em uma **carreira crescente e bem remunerada**.
+
+```{r, out.width="75%", echo=FALSE}
+knitr::include_graphics("imagens/industrias.png")
+```
+
+]
+
+---
+
+# Indústrias variadas
+
+```{r, out.width="75%", echo=FALSE}
+knitr::include_graphics("imagens/empresas-usa-r.png")
+```
+
+---
+
+# Integração
+
+O R pode ser integrado com demais linguagens e ferramentas para análise dados, o que confere **flexibilidade** para o seu emprego em **diferentes contextos e necessidades**.
+
+```{r, out.width="75%", echo=FALSE}
+knitr::include_graphics("imagens/r-integracao.png")
+```
+
+---
+
+# Robusta Visualização de Dados
+
+```{r, out.width="95%", echo=FALSE, fig.cap="<center><b>Poliomelite por estados americanos e tempo.</b></center>"}
+knitr::include_graphics("imagens/polio-dataviz.png")
+```
+
+---
+
+# Vantagens
+
+1. _Cross-platform_
+- “É compatível em diferentes Sistemas Operacionais”
+
+2. Permite computação distribuída
+- “É possível dividir a tarefa em múltiplos nós de processamento, reduzindo tempo de execução e permitindo a análise de grandes bases de Dados”
+
+3. Vetorizado
+- R é uma linguagem vetorial. Isso torna o processo de inspeção e investigação de dados mais rápido com o R.
+
+4. Relatórios Dinâmicos e web-apps
+- “É possível fazer dashboards iterativas, o que permite que usuários/pesquisadores explorem melhor gráficos e tabelas e aprimorar o storytelling da sua análise de dados.”
+
+---
+# Desvantagens
+
+1. “A qualidade de alguns pacotes está muito aquém do perfeito”
+- “Não há suporte ao cliente. Ou seja, o uso do R e seus pacotes é da sua responsabilidade”
+[https://data-flair.training/blogs/why-learn-r/](https://data-flair.training/blogs/why-learn-r/)
+
+2. “O R foi concebido para usar a memória RAM do computador.”
+[http://www.bestprogramminglanguagefor.me/why-learn-r](http://www.bestprogramminglanguagefor.me/why-learn-r)
+
+3 . “R é lento”
+[http://www.bestprogramminglanguagefor.me/why-learn-r](http://www.bestprogramminglanguagefor.me/why-learn-r)
+
+---
+
+# Processo de Análise de Dados
+
+```{r, out.width="95%", echo=FALSE}
+knitr::include_graphics("imagens/processoAnaliseDados.png")
+```
+
+---
+
+# Processo de Análise de Dados
+
+```{r, out.width="95%", echo=FALSE}
+knitr::include_graphics("imagens/hexagons.png")
+```
+
+Fonte: [https://github.com/rstudio/hex-stickers](https://github.com/rstudio/hex-stickers)
+
+---
+
+# Linguagem de Programação
+
+“Conjunto de instruções que produz diferentes tipos de output.
+A maioria das linguagens de programação consiste em instruções para computadores”
+[https://en.wikipedia.org/wiki/Programming_language](https://en.wikipedia.org/wiki/Programming_language)
+
+```{r, out.width="50%", echo=FALSE,fig.cap="<b>Admirável mundo novo</b>"}
+knitr::include_graphics("https://media.giphy.com/media/3ohhwJbytwUSJyvvHi/giphy.gif")
+```
+
+---
+
+```{r, out.width="35%", echo=FALSE}
+knitr::include_graphics("https://media.giphy.com/media/xT9DPLHGWqex2nWWis/giphy.gif")
+```
+
+Linguagem de programação que consiste em **instruções para computadores** relacionadas a ANÁLISE DE DADOS, produzindo outputs como: medidas (média, quantis, desvio, etc), gráficos, tabelas, mapas, diagramas, modelos explorando a relação entre variáveis.
+
+---
+
+## RStudio
+
+O RStudio é uma interface para programar em R. 
+É o melhor ambiente para desenvolver um código em R.
+
+* Interface para objetos em memória, script, gráficos e tabelas
+* Highlight do código
+* Autocomplete
+* Match de parênteses e chaves
+* Ajuda a identar o código (não é obrigatório, só recomendável) 
+* Criação de projetos (um diretório de trabalho o que exime o usuário de especificar o diretório independente de onde ele ‘rodar’ o script)
+* Integrar com ambientes de controle de versão, como Github ou Gitlab
+
+---
+
+## RStudio
+
+```{r, out.width = "95%", echo=FALSE}
+knitr::include_graphics("imagens/tela_rstudio.png")
+```
+
+---
+
+# O R como calculadora
+
+1. Os comandos são digitados no **prompt >**
+2. Para submeter os comandos pressione Enter
+3. Para inserir vários comandos na mesma linha utilize **;**
+
+```{r}
+2 + 2 # Soma
+2 - 2 # Subtracao
+2 * 2 # Multiplicacao
+2 / 2 # Divisao
+```
+
+---
+
+# O R como calculadora
+
+O R ignora os espaços em brancos excessivos
+
+```{r}
+2                      + 2 # Soma com espaco enorme
+```
+
+String/caracteres devem ser inseridos entre aspas simples ( ’ ’ ) ou dupla ( “” )
+
+```{r}
+"R ladies" 
+'Gyn'
+```
+
+Continuação da linha é indicado por +. Quebra de linha é representada por \n
+
+```{r}
+"Curso Basico R ladies Gyn
+em 04 de Julho de 2020"
+```
+
+Use parênteses para calcular expressões
+
+```{r}
+((2 + 3) * 2)^2
+```
+
+---
+
+# Operadores Aritméticos
+
+```{r, eval = FALSE}
+2 + 2 # Soma
+2 - 2 # Subtracao
+2 * 2 # Multiplicacao
+2 / 2 # Divisao
+2 ^ 2 # Exponenciação
+```
+
+```{r}
+10 %% 3 # Resto da Divisao
+10 %/% 3# Parte inteira da Divisão
+```
+
+Fonte: [https://www.datamentor.io/r-programming/operator/](https://www.datamentor.io/r-programming/operator/)
+
+---
+# Operadores Relacionais
+
+```{r}
+10 > 3; 10 >= 3 # Maior que # Maior ou igual que
+10 < 3; 10 <= 3 # Menor que # Menor que ou igual que
+(2+2) == 4 # Igual
+(2+2) != 4 # Diferente
+(2+3) != 4 # Diferente
+```
+Fonte: [https://www.datamentor.io/r-programming/operator/](https://www.datamentor.io/r-programming/operator/)
+
+---
+
+# Objetos no R 
+
+### “tudo o que existe no R é um objeto”
+
+Para “fazermos cálculos e análises” é interessante guardar quantidades no computador.
+E, claro, ser capaz de acessar essas quantidades. 
+
+.pull-left[
+Acessar para mim:
+
+1. colocar em uma gavetinha de memória do computador, (objeto)
+
+1. com uma etiqueta (um nome para a quantidade guardada)
+
+]
+
+.pull-right[
+
+```{r, out.width="50%", echo=FALSE}
+knitr::include_graphics("imagens/gavetas_memoria.png")
+```
+]
+
+---
+
+# Objetos no R e Operadores de Atribuição
+
+Para **atribuir** valores a objetos, basta usar o operador **<-** (combinação do  < com −):
+
+```{r}
+nome_evento <- "r ladies gyn" # Atribuição à esquerda
+```
+
+Como alternativa, podemos utilizar o operador **=**:
+```{r}
+pessoas_evento = 300 # Atribuição à direita
+```
+
+### Obs.:
+
+1. Também é possível usar o operador de atribuição à direita (**->>**). 
+
+1. Quando a intenção é a atribuição (a nível global) dentro de uma função: usar **<<-** ou **->>**.
+
+---
+
+# Acessando objetos no R
+
+Para visualizar o valor armazenado em um objeto:
+
+1. basta digitar o nome do objeto no prompt então apertar Enter ou  
+
+```{r}
+nome_evento
+pessoas_evento
+```
+
+1. usar a função print() ou
+1. entre parênteses (objeto1)
+```{r}
+print(nome_evento)
+(pessoas_evento)
+```
+
+---
+
+# Objetos no R
+
+Note também que o R é _case sensitive_:
+
+```{r}
+(tudo_minusculo <- "rladies gyn em minusculo")
+(tudo_maiusculo <- "RLADIES GYN EM MAIUSCULO")
+```
+
+Objetos no R podem ser nomeadas usando:
+
+* letras, 
+* números, 
+* ponto (.) e 
+* underline (_), 
+
+---
+
+# Objetos no R
+
+Porém, há algumas regras básicas para criar os nomes de objetos:
+
+- Começar com letra ou ponto (não com números ou símbolos).
+
+- Pode-se usar o símbolo _ (underline)
+
+```{r, eval = FALSE}
+var_name <- 30
+.var_name <- 30
+```
+
+- Se iniciar com um ponto, não pode ser seguido de um número. 
+
+```{r, eval = FALSE}
+.1var_name <- 30
+```
+
+---
+
+# Objetos no R
+
+- Nomes de objetos não:
+
+- podem conter espaços.
+
+```{r, eval = FALSE}
+var name <- 30
+``` 
+
+- podem conter caracter especial.
+
+```{r, eval = FALSE}
+var&name <- 30
+```   
+
+- podem usar palavras reservadas da linguagem (for, if e while).
+
+```{r, eval = FALSE}
+for <- 30; if <- 30; while <- 30
+```  
+
+- O nome do objeto pode ser tão longo quanto você queira. 
+
+- Existem boas práticas para ter um código legível e conciso.
+
+---
+
+# Objetos no R
+
+Algumas quantidades que vem no R:
+
+```{r}
+(letters)
+```  
+```{r}
+(LETTERS)
+```
+
+```{r}
+(month.name)
+```
+
+```{r}
+(month.abb)
+```
+
+```{r}
+(pi)
+```
+
+---
+
+# Mãos à Massa 01 (Objetos)
+
+Considere que na Investigação do assassinato algumas possíveis testemunhas serão interrogadas. 
+
+São 12 pessoas para escutar e cada depoimento demora, em média, 1h30. 
+Um único delegado e escrivão devem colher todos os depoimentos e ambos trabalham 6 horas por dia.
+Quanto tempo vai demorar para escutar todas as testemunhas?
+
+Crie objetos para guardar as quantidades mais importantes nesse problema. Quantos objetos são? Quais são?
+
+Calcule o tempo necessário para interrogar todas as testemunhas
+
+A) em horas 
+
+B) em minutos
+
+C) em dias de trabalho da dupla delegado/escrivão
+
+---
+
+# Mãos à Massa
+
+```{r}
+testem <- 12 # atrib a esquerda
+1.5 -> tempo_inter # atrib a direita
+tempo_trab_deleg <- 6
+
+tempo_inter_tds_testem_horas <- testem * tempo_inter
+
+tempo_inter_tds_testem_min <- tempo_inter_tds_testem_horas * 60
+
+dias_trab_deleg <- tempo_inter_tds_testem_horas/tempo_trab_deleg
+```
+
+---
+
+# Classes de Objetos/Tipo de Variáveis
+
+.pull-left[
+Em uma análise estatística existem diferentes tipos de dados: 
+
+- numéricos, 
+
+- categóricos, 
+
+- ordinais, 
+
+- univariados, 
+
+- multivariados, 
+
+- temporais,
+
+- espaciais,
+
+- Etc.
+
+]
+
+.pull-right[
+
+O R possui diferentes classes para acomodar estas diferentes natureza de dados.
+
+
+Para saber a classe de um objeto devemos utilizar a **função class()**.
+
+```{r, eval = FALSE}
+?class()
+```
+
+]
+
+---
+
+.pull-left[
+## Classe numeric
+
+Se aplica a variáveis como renda, altura, contagem de infectados, etc.
+
+```{r, eval = FALSE}
+?numeric()
+```
+
+```{r}
+x <- 2.5
+class(x)
+```
+
+```{r}
+y <- 10
+class(y)
+```
+]
+
+.pull-right[
+## Classe integer
+
+Se aplica a quantidades do tipo números inteiros (variável como contagem de infectados, etc.)
+
+```{r, eval = FALSE}
+?integer()
+```
+
+```{r}
+w <- 35L
+class(w)
+```
+]
+
+---
+
+.pull-left[
+## Classe logical
+
+Se aplica a variáveis que podem assumir dois possíveis valores: TRUE ou FALSE
+
+```{r, eval = FALSE}
+?logical()
+```
+
+```{r}
+logico <- 1 < 2
+class(logico)
+```
+]
+
+.pull-right[
+## Classe character
+
+Para variáveis que representam Texto.
+
+```{r, eval = FALSE}
+?character()
+```
+
+```{r}
+nosso_char <- "rladies Gyn"
+class(nosso_char)
+```
+]
+
+---
+
+# Convertendo para Classes de Objetos/Tipo de Variáveis
+
+As funções is.CLASSE (is.numeric, is.integer, is.character) testam se o objeto é da classe CLASSE. 
+Neste caso, o retorno desta função um objeto da classe logical().
+
+```{r}
+nosso_char
+is.character(nosso_char)
+is.numeric(nosso_char)
+is.numeric(logico)
+```
+
+---
+
+# Convertendo para Classes de Objetos/Tipo de Variáveis
+
+Já as funções do tipo as.CLASSE (as.integer, as.numeric, etc) são utilizadas para atribuir uma classe ao objeto.
+Ou seja, elas tentam converter um objeto a ser da classe CLASSE.
+
+.pull-left[
+```{r}
+w
+is.character(w)
+as.character(w)
+```
+]
+
+.pull-right[
+```{r}
+as.integer(pi)
+is.integer(logico)
+```
+]
+
+---
+
+# Mais Operadores Lógicos
+
+```{r}
+u <- 2 < 3 # TRUE
+v <- 2 > 3 # FALSE
+```
+
+```{r}
+u & v # E
+```
+
+```{r}
+u | v # OU
+```
+
+```{r}
+! v # Negando
+```
+
+---
+
+# Mais Operadores Lógicos
+
+.pull-left[
+```{r}
+u <- 2 < 3 # TRUE
+v <- 5 > 3 # TRUE
+```
+
+```{r}
+u & v # E
+```
+
+```{r}
+u | v # OU
+```
+
+```{r}
+! v # Negando
+```
+]
+
+.pull-right[
+```{r}
+u <- 2 < 1 # FALSE
+v <- 5 < 3 # FALSE
+```
+
+```{r}
+u & v # E
+```
+
+```{r}
+u | v # OU
+```
+
+```{r}
+! v # Negando
+```
+]
+
+---
+
+# Classe character
+
+No R existe uma infinidade de funções para manipular strings/caracteres, além de conseguir interpretar as famosas expressões regulares
+
+- paste(): concatena/junta strings.
+
+```{r}
+paste("Rladies", "Gyn")
+```
+
+```{r}
+paste("Rladies", "Gyn", sep = "_")
+```
+
+```{r}
+paste0("Rladies", "Gyn")
+```
+
+---
+
+# Classe character
+
+- grep(): números inteiros. Ex.: 5L.
+
+```{r}
+grep(pattern = "Rladies", x = "Rladies Gyn")
+```
+
+---
+
+# Classe character
+
+- gsub(): TRUE ou FALSE.
+
+```{r}
+gsub(pattern = "Rladies", replacement = "We love", x = "Rladies Gyn")
+```
+
+- substr(): caracteres/strings
+
+```{r}
+substr(x = "04/07/2020", start = 1, stop = 2)
+substr(x = "04/07/2020", start = nchar("04/07/2020") - 4, stop = nchar("04/07/2020"))
+```
+
+---
+
+# Mãos à Massa
+
+Na Investigação do assassinato o nome de uma das testemunhas ficou como “L444rissa”. 
+
+Atribua “L4rissa” a um objeto no R e responda:
+
+Qual a classe desse objeto?
+
+Utilize a função substr() para obter o número que está no objeto  e atribua este valor em um outro objeto. Ex.: numero <- substr(???).
+
+Qual a classe do objeto numero? Transforme-o para a classe adequada.
+
+---
+
+class: center, middle, inverse
+
+Até este momento estamos apenas trabalhando com objetos ESCALARES, ou seja, com um único valor. 
+
+De agora em diante são apresentadas estruturas de armazenamento de dados em R.
+
+---
+
+# Estruturas de Dados 
+
+## de uma classe, apenas
+
+```{r, out.width="90%", echo = FALSE}
+knitr::include_graphics("imagens/Esquema_Escalar_Vetor_matriz_Array.png")
+```
+
+---
+
+# Estruturas de Dados 
+
+## mais de uma classe
+
+```{r, out.width="90%", echo = FALSE}
+knitr::include_graphics("imagens/Esquema_lista_dataFrame.png")
+```
+
+---
+
+background-image: url("imagens/vetor.png")
+background-position: 40% 40%
+class: center, bottom, inverse
+
+---
+
+# Vetores
+
+- Um vetor é uma **sequência de dados do mesmo tipo ou classe. ** Ou seja, um vetor só pode conter valores numéricos, ou lógicos, ou de caracteres.
+
+- Por isso, é uma estrutura de dados chamada de homogênea
+
+- Faça:
+
+```{r}
+?c()
+```
+
+- Qual a classe dos objetos abaixo ?
+
+```{r}
+(vet1 <- c(3, pi, 9, 1000L))
+(vet2 <- c("3", pi, 9, 1000L))
+```
+
+- O que podemos concluir ?
+
+--
+
+- Para fazer o vetor o R fez uma conversão de classe para a classe mais primitiva.
+
+---
+
+## Inspecionando um vetor
+
+#### length()
+Pode ser útil observar o TAMANHO dele:
+
+```{r}
+length(vet1)
+```
+
+#### names()
+Pode ser útil observar o NOMEAR as entradas de um vetor:
+
+```{r}
+(num_partic <- c(100, 101, 102, 103))
+names(num_partic) <- c("Goiânia", "Niterói", "Lavras", "Natal")
+(num_partic)
+```
+
+---
+# Criando vetores com um padrão desejado
+
+.pull-left[
+Quando você precisar fazer um vetor extenso (muitas posições) da classe **numeric** você pode recorrer a duas funções muito flexíveis: **seq** e **rep**.
+
+Faça:
+
+```{r}
+?seq
+```
+
+E:
+
+```{r}
+?rep
+```
+
+]
+
+.pull-right[
+```{r}
+seq(from = 2, to = 20, by = 2) # crescente
+seq(from = 20, to = 6, by = -2) # decrescente
+1:3
+rep(x = 1:3, times = 3)
+rep(x = 1:3, each = 3)
+```
+]
+
+---
+Podemos combinar/concatenar/juntar vetores usando a mesma função **c()**:
+
+```{r}
+vet_seq <- seq(from = 2, to = 20, by = 2)
+vet_ope <- 1:3
+vet_rep <- rep(x = 7:9, each = 3)
+
+vet_juntos <- c(vet_seq, vet_ope, vet_rep)
+```
+
+Quantos elementos estão em **vet_juntos**?
+
+---
+
+# Criando um vetor de números aleatórios
+
+Criando um vetor de números aleatórios.
+```{r}
+vet_num <- sample(size = 1000, x = 1:1000, replace = FALSE)
+```
+
+Criando um vetor aleatório de números reais amostrado de uma N(2,1).
+```{r}
+vet_norm <- rnorm(n = 1000, mean = 2, sd = 1)
+```
+
+Como estamos na _lingua franca_ para Estatística funções para lidar com densidades de probabilidade. Quer saber quais outras densidades estão disponíveis?
+
+Digite:
+```{r}
+?rnorm
+```
+
+E procure por **Details**.
+
+---
+
+### Funções aplicadas a Vetores
+
+```{r}
+(vet_num <- sample(size = 15, x = seq(15), replace = FALSE))
+```
+
+.pull-left[
+```{r}
+mean(vet_num) # media
+```
+
+```{r}
+median(vet_num) # mediana
+```
+
+```{r}
+min(vet_num) # minimo
+```
+
+```{r}
+max(vet_num) # maximo
+```
+
+]
+
+.pull-right[
+```{r}
+sd(vet_num) # desvio
+```
+
+```{r}
+var(vet_num) # variancia
+```
+
+```{r}
+range(vet_num) # amplitude
+```
+
+```{r}
+sum(vet_num) # soma
+```
+
+]
+---
+
+### Funções aplicadas a Vetores
+
+```{r}
+vet_num1 <- 1:1000
+vet_num2 <- 1000:1
+vet_num3 <- rnorm(n = 1000, mean = 5, sd = 2)
+```
+
+.pull-left[
+```{r}
+head(vet_num1) # primeiros elementos
+```
+
+```{r}
+tail(vet_num1) # ultimos elementos
+```
+
+```{r}
+summary(vet_num1) # resumo
+```
+
+```{r}
+quantile(x = vet_num1, probs = 0.25) # quantil
+```
+]
+
+.pull-right[
+```{r}
+cor(x = vet_num1, y = vet_num2) # correlação
+```
+
+```{r}
+cor(x = vet_num1, y = vet_num3) # correlação
+```
+
+```{r}
+cor(x = vet_num1, y = vet_num2, method = "spearman") # Spearman
+```
+
+]
+
+---
+
+### Mãos à Massa 02 (Vetores)
+
+Digite:
+
+.pull-left[
+
+Vetores x e y com atribuição a esquerda.
+```{r}
+(x <- 1:5)
+(y <- c(2:4, 1, 2))
+```
+
+Um teste lógico:
+```{r}
+x == seq( 1, 5, by = 1)
+```
+
+Outro teste lógico:
+```{r}
+x < y
+```
+]
+
+.pull-right[
+
+Um teste lógico:
+```{r}
+x == seq(1, 3, by = 1)
+```
+
+Outro teste lógico:
+```{r}
+x < y
+```
+
+O quê aconteceu?
+]
+
+---
+
+# Linguagem Vetorizada
+
+Quando comparamos dois vetores **x** e **y** (x < y, x == y, etc) a relação é avaliada para **TODO O VETOR**.
+
+Desse jeito cada elemento do vetor **x** foi **comparado com o SEU RESPECTIVO PAR do vetor y**. 
+
+.pull-left[
+```{r}
+(vet1 <- 1:5)
+(vet2 <- 6:10)
+vet1 < vet2
+```
+]
+
+.pull-right[
+```{r}
+(vetlet1 <- c("a", "b", "t"))
+(vetlet2 <- c("r", "s", "t"))
+vetlet1 >= vetlet2
+```
+]
+
+---
+
+# Linguagem Vetorizada
+
+```{r}
+(vetA <- 1:5)
+(vetB <- 3:7)
+vetA + vetB # Somando elem a elem
+vetA - vetB # Subtraindo elem a elem
+vetA * vetB # Multiplicando elem a elem
+vetA / vetB # Dividindo elem a elem
+vetA ^ vetB # Dividindo elem a elem
+```
+---
+
+# Reciclagem
+
+Sempre que há uma incompatibilidade no comprimento de dois vetores que vc está operando o **vetor MAIS CURTO é RECICLADO (repetido)** até corresponder ao comprimento do vetor mais longo.
+
+```{r, out.width="100%", fig.cap="<center><b>Fonte: <a href='https://rladiesbh.com.br/'>Curso básico https://rladiesbh.com.br/</a></b></center>", echo = FALSE}
+knitr::include_graphics("imagens/Reciclagem.png")
+```
+
+---
+
+### Mãos à Massa 03 (Vetores)
+
+Digite:
+
+.pull-left[
+
+Vetores x e y com atribuição a esquerda.
+```{r}
+(u <- seq(10, 30, by = 10))
+(v <- 1:9)
+```
+
+Faça:
+```{r}
+u + v
+```
+]
+
+.pull-right[
+Outro teste lógico:
+```{r}
+w <- 1:10
+u + v
+```
+
+O quê aconteceu?
+]
+
+---
+
+# Acessando elementos
+
+Vetores são estruturas de dados homogêneas, unidimensionais. 
+
+Para acessar elementos de um vetor utilize o operador colchetes: **[]**.
+
+.pull-left[
+```{r}
+(vetA <- 1:5)
+vetA[1] # posicao 1
+vetA[5] # posicao 5
+vetA[-1]  # tudo exceto posicao 1
+```
+]
+
+.pull-right[
+
+```{r}
+vetA[-5]  # tudo exceto posicao 5
+```
+
+Note que:
+```{r, eval = FALSE}
+vetA[0] # posicao 0
+vetA[6] # posicao 6
+```
+
+Retorna ERRO.
+]
+
+---
+
+# Acessando elementos
+
+Ainda com o operador colchetes **[]** podemos acessar elementos de um vetor realizando **operações LÓGICAS sobre o vetor**.
+
+```{r}
+(num_partic <- c(80, 91, 102, 113))
+names(num_partic) <- c("Goiânia", "Niterói", "Lavras", "Natal")
+(num_partic)
+```
+
+Quem são as entradas de **num_partic** com mais de 100 participantes?
+
+```{r}
+(num_partic > 100)
+```
+
+Qual a classe desse vetor?
+
+---
+
+# Acessando elementos
+
+```{r}
+(num_partic > 100)
+```
+
+E usando esse vetor para indexar o vetor original:
+
+```{r}
+num_partic[num_partic > 100]
+```
+
+Qual a classe desse vetor?
+
+---
+
+background-image: url("imagens/matriz.png")
+background-position: 40% 40%
+class: center, bottom, inverse
+
+---
+
+# Matrizes
+
+Um vetor bidimensional.
+
+Ou uma junção de vetores( lado a lado ou linha a linha)
+
+Cada linha ou coluna de uma matriz individualmente será um **vetor**.
+
+.pull-left[
+```{r}
+(A <- matrix(data = 1:6,
+             nrow = 3))
+```
+
+Note: existe também o argumento **ncol**.
+]
+
+.pull-right[
+Com argumento para preencher a matriz no sentido das linhas
+
+```{r}
+(B <- matrix(data = 1:6,
+             nrow = 3, 
+             byrow = TRUE))
+```
+]
+
+---
+
+## Matriz
+
+.pull-left[
+
+#### Acessando
+
+```{r}
+A[2,1] # Um elemento
+```
+
+
+```{r}
+A[2, ] # Linha
+```
+
+
+```{r}
+A[, 1] # Coluna
+```
+
+
+```{r}
+A[, c(1,2)]# Duas colunas
+```
+]
+
+.pull-right[
+#### Inspecionando
+
+```{r}
+dim(A)# num. lin e col
+```
+
+```{r}
+nrow(A)# num. lin
+```
+
+```{r}
+ncol(A)# num. col
+```
+
+```{r}
+(rownames(A) <- letters[1:nrow(A)]) # nome das linhas
+```
+
+```{r}
+(colnames(A) <- letters[1:ncol(A)]) # nome das colunas
+```
+]
+---
+
+## Matriz - Concatenando
+
+.pull-left[
+
+#### por Coluna
+
+```{r}
+col1 <- 1:5
+col2 <- 2001:2005
+col3 <- 1:5
+col4 <- 1505:1501
+```
+
+```{r}
+(matconcat1 <- cbind(col1, col2, col3))
+```
+
+```{r}
+(matconcat2 <- cbind(matconcat1, col4))
+```
+
+]
+
+.pull-right[
+#### por Linha
+
+```{r}
+matLin1 <- matrix(data = 1:9, ncol = 3)
+matLin2 <- matrix(data = 1001:1006, ncol = 3)
+```
+
+```{r}
+(rbind(matLin1, matLin2))
+```
+]
+
+---
+
+# Observe
+
+```{r}
+matLin8 <- matrix(data = 1:8, ncol = 3)
+```
+
+--
+
+- O quê vai acontecer?
+
+```{r, echo = FALSE}
+matLin8
+```
+--
+
+- Reciclagem!
+
+---
+
+# Funções aplicadas a Matrizes
+
+```{r}
+(mat_ex <- matrix(data = 9:1, nrow = 3, byrow = TRUE))
+```
+
+.pull-left[
+```{r}
+t(mat_ex) # transpor
+```
+
+```{r}
+diag(mat_ex) # ultimos diagonal
+```
+
+```{r}
+diag(3) # matriz Diagonal
+```
+
+]
+
+.pull-right[
+```{r}
+det(mat_ex) # determinante
+```
+
+```{r}
+nrow(mat_ex) # num.linhas
+```
+
+```{r}
+ncol(mat_ex) # num.colunas
+```
+
+]
+
+---
+
+# Funções aplicadas a Matrizes
+
+.pull-left[
+```{r}
+rowSums(mat_ex) # soma das linhas
+rowMeans(mat_ex) # media das linhas
+```
+
+```{r}
+colSums(mat_ex) # soma das colunas
+colMeans(mat_ex) # media das colunas
+```
+]
+
+.pull-right[
+```{r}
+rownames(mat_ex) # nome das linhas
+```
+
+```{r}
+colnames(mat_ex) # nome das colunas
+```
+]
+
+---
+
+# Mãos à Massa 04 (Matrizes)
+
+Tente resolver as questões abaixo **sem utilizar o R**.
+
+--
+
+- Podemos construir no R uma matriz com dados numéricos e texto? Se sim,
+qual o tipo de dado dessa matriz?
+
+--
+
+- O que ocorre se definirmos o argumento **byrow = TRUE** na construção de uma matriz?
+
+--
+
+-  Para construir uma matriz com 25 elementos organizados em 5 linhas e 5 colunas, precisamos necessariamente definir os argumentos ncol  e nrow da função matrix()? Por quê?
+
+---
+
+# Mãos à Massa 05 (Matrizes)
+
+Crie uma matriz m cujas entradas são os números de 1 a 3. Essa matriz tem 2 linhas e 2 colunas.
+
+--
+
+- Você consegue passar os números de 1 a 3 de outro jeito?
+
+--
+
+- Qual o valor do elemento na segunda linha na segunda coluna ?
+
+--
+
+- Faça as seguintes operações:
+3 * m
+m + m
+m > 2
+[m == 3]
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Faça uma matriz para representar o mês de *Julho de 2020*
+
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Faça uma matriz para representar o mês de Julho de 2020
+
+```{r, eval = FALSE, include = FALSE}
+julho <- matrix(data = c(0, 0, 0, 1:31, 0), 
+                ncol = 7, 
+                byrow = TRUE)
+dimnames(julho)[[2]] <- c("dom", "seg", "ter", "qua", "qui", "sex", "sab")
+```
+
+--
+
+- Qual o desvio padrao de quarta-feira?
+
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Faça uma matriz para representar o mês de Julho de 2020
+
+```{r}
+julho <- matrix(data = c(0, 0, 0, 1:31, 0), ncol = 7, byrow = TRUE)
+dimnames(julho)[[2]] <- c("dom", "seg", "ter", "qua", "qui", "sex", "sab")
+```
+
+Qual o desvio de quarta-feira?
+
+```{r}
+sd(julho[, "qua"])
+```
+
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Faça uma matriz para representar o mês de Julho de 2020
+
+```{r}
+(julho <- matrix(data = c(0, 0, 0, 1:31, 0), ncol = 7, byrow = TRUE))
+dimnames(julho)[[2]] <- c("dom", "seg", "ter", "qua", "qui", "sex", "sab")
+```
+
+Qual o desvio de quarta-feira?
+
+```{r}
+sd(julho[, "qua"])
+```
+
+Qual a média de cada dia da semana?
+
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Faça uma matriz para representar o mês de Julho de 2020
+
+```{r}
+julho <- matrix(data = c(0, 0, 0, 1:31, 0), ncol = 7, byrow = TRUE)
+dimnames(julho)[[2]] <- c("dom", "seg", "ter", "qua", "qui", "sex", "sab")
+```
+
+Qual o desvio de quarta-feira?
+
+```{r}
+sd(julho[, "qua"])
+```
+
+Qual a média de cada dia da semana?
+
+```{r}
+colMeans(julho)
+```
+
+---
+
+# Mãos à Massa 06 (Matrizes)
+
+Qual a média de **cada dia da semana**?
+
+```{r}
+apply(X = julho, MARGIN = 2, FUN = function(x) mean(x))
+```
+
+Qual a média de **por semana**?
+
+```{r}
+apply(X = julho, MARGIN = 2, FUN = function(x) mean(x))
+```
+
+---
+
+background-image: url("imagens/array.png")
+background-position: 40% 40%
+class: center, bottom, inverse
+
+---
+
+background-image: url("imagens/lista.png")
+background-position: 25% 25%
+class: center, bottom, inverse
+
+---
+
+# Listas
+
+Trata-se da estrutura de dados **mais genérica** do R.
+
+Uma lista é como um gaveteiro (de novo) em que cada gaveta pode receber um objeto do R diferente.
+
+Uma lista é **unidimensional**
+
+```{r}
+idade <- c(20, 21, 17, 35, 49)  
+nomes <- c("Isabel", "Maria Julia", "Beatriz", "Juliana", "Luisa")
+curso <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
+
+(lista <- list(nomes, idade, curso))
+```
+---
+
+## Sem nomear
+```{r}
+(lista <- list(nomes, idade, curso))
+```
+
+## Nomeando
+```{r}
+(lista <- list(nomes = nomes, idade = idade, curso = curso))
+```
+
+---
+
+# Listas
+
+.pull-left[
+
+### Acessando
+```{r}
+lista[[1]]
+```
+
+```{r}
+lista[["nomes"]]
+```
+
+```{r}
+lista$nomes
+```
+
+```{r}
+lista[c(1, 3)]
+```
+]
+
+.pull-right[
+### Modificando
+```{r}
+lista[[1]][2] <- 33
+```
+
+```{r}
+lista$nomes[1] <- "Isabella"
+lista$idade[5] <- 50
+```
+]
+
+---
+
+# Funções aplicadas a Listas
+
+Entrando com uma lista:
+
+```{r}
+lista2 <- list(rnorm(n = 120, mean = 3, sd = 0.5),
+               rnorm(n = 100, mean = 1, sd = 0.5),
+               rnorm(n = 150, mean = 2, sd = 1))
+names(lista2) <- paste("resexp", 
+                        seq(length(lista2)), 
+                        sep = "_")
+```
+
+Note que estamos usando a função *paste* para nomear as entradas da lista.
+
+---
+
+# Funções aplicadas a Listas
+
+*head()* de cada parte da lista com a função *lapply*:
+
+```{r}
+lapply(X = lista2, FUN = function(x) head(x = x))
+```
+
+Aplicando uma função para achar o primeiro percentil com a função *lapply*:
+
+```{r}
+lapply(X = lista2, FUN = function(x) quantile(x = x, probs = 0.10))
+```
+
+Note que: Só faz sentido usar a função *lapply* se todas as partes da lista forem da mesma classe.
+
+---
+
+background-image: url("imagens/dataframe.png")
+background-position: 40% 40%
+class: center, bottom, inverse
+
+---
+
+# Data.frames
+
+- Parece uma matriz porque normalmente é **bidimensional**
+
+- Linhas: elementos observados/ instâncias 
+- Colunas: características de interesse/ variáveis coletadas/ _features_
+
+- Mas tem a flexibilidade das listas pelo fato de **aceitar que colunas diferentes tenham classes diferentes**
+
+- É a estrutura de dados mais similar a uma **planilha de dados**.
+
+---
+
+# Data.frames 
+
+```{r}
+(df <- data.frame(id = c(12376, 18598, 33221, 64550, 77937),
+                 nome = c("Isabel", "Maria Julia", "Beatriz", "Juliana", "Luisa"),
+                 curso = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+                 idade = c(20, 21, 17, 35, 49),
+                 freqEv = c(3, 10, 7, 8, 5),
+                 percTempEv = c(0.8, 1, 1, 0.14, 0.5)))
+```
+---
+
+# Data.frames 
+
+O que aconteceria se uma das colunas tivesse menos entradas?
+
+--
+
+- Faça a entrada da matriz removendo o último registro da coluna _percTempEv_
+
+```{r, eval = FALSE}
+(df <- data.frame(id = c(12376, 18598, 33221, 64550, 77937),
+                 nome = c("Isabel", "Maria Julia", "Beatriz", "Juliana", "Luisa"),
+                 curso = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+                 idade = c(20, 21, 17, 35, 49),
+                 freqEv = c(3, 10, 7, 8, 5),
+                 percTempEv = c(0.8, 1, 1, 0.14)))
+
+```
+
+--
+
+- Note que: uma estrutura de dados *data.frame* *NÃO FAZ RECICLAGEM!*
+
+---
+
+# Data.frames 
+
+Como a estrutura de dados *data.frame* *NÃO FAZ RECICLAGEM* uma entrada faltante precisa ser explicitada com _NA_!
+
+```{r}
+(df <- data.frame(id = c(12376, 18598, 33221, 64550, 77937),
+                 nome = c("Isabel", "Maria Julia", "Beatriz", "Juliana", "Luisa"),
+                 curso = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+                 idade = c(20, 21, 17, 35, 49),
+                 freqEv = c(3, 10, 7, 8, 5),
+                 percTempEv = c(0.8, 1, 1, 0.14, NA)))
+```
+
+---
+
+# Data.frames 
+
+.pull-left[
+
+### Acessando
+```{r}
+df[1, ] # linha
+```
+
+```{r}
+df[, 1] # coluna
+```
+
+```{r}
+df$nome # coluna
+```
+
+```{r}
+df[, 'idade'] # coluna
+```
+
+```{r}
+df[c(1, 5), 1:3] # sub data.frame
+```
+]
+
+.pull-right[
+### Funções
+```{r}
+head(df) # primeiros elementos
+```
+
+```{r}
+str(df) # classes
+```
+
+```{r}
+summary(df)  # resumo
+```
+]
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+```{r}
+data(mtcars)
+```
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+```{r}
+data(mtcars)
+```
+
+Inspecione o objeto *mtcars* com *?mtcars*
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+```{r}
+data(mtcars)
+```
+
+Qual a classe das colunas desse objeto?
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+```{r}
+data(mtcars)
+```
+
+Qual a classe das colunas desse objeto?
+
+```{r}
+apply(X = mtcars, MARGIN = 2, FUN = function(x) class(x))
+```
+
+---
+
+# Mãos à Massa 07 (data.frames)
+
+Carregue os dados *mtcars*
+
+```{r}
+data(mtcars)
+```
+
+Qual o maior valor observado para cada variável?
+
+```{r}
+apply(X = mtcars, MARGIN = 2, FUN = function(x) max(x))
+```
+
+---
+
+## Essa apresentação está em Xaringan! 
+
+```{r, out.width="20%", fig.cap="<center><b>Logo: <a href='https://github.com/yihui/xaringan'>Pacote Xaringan</a></b></center>", echo = FALSE}
+knitr::include_graphics("adesivos_hexagons/PNG/xaringan.png")
+```
+
+Ela começou em slides usuais... mas virou um script.
+
+
+### Como referenciar o Xaringan?
+
+```{r, refer_xaringan, eval = FALSE}
+citation(package = "xaringan")
+```
+
+---
+
+class: middle
+## Tem uma documentação em RMarkdown também! 
+
+```{r, out.width="20%", fig.cap="<center><b>Logo: <a href='https://rmarkdown.rstudio.com'>Pacote rmarkdown</a></b></center>", echo = FALSE}
+knitr::include_graphics("adesivos_hexagons/PNG/rmarkdown.png")
+```
+
+
+### Como referenciar o rmarkdown?
+
+```{r, refer_RMarkdown, eval = FALSE}
+citation(package = "rmarkdown")
+```
+
+---
+
+# Recomendamos fortemente:
+
+A leitura dos slides da [Beatriz Milz](https://beatrizmilz.github.io/IME-27-08-2019/#32), co-organizadora do [Rladies SP](https://www.meetup.com/pt-BR/rladies-sao-paulo/).
+
+Eu tô aprendendo e me inspirando [nesse código dela](https://github.com/beatrizmilz/aMostra-IME-2019-Xaringan/blob/master/docs/index.Rmd). 
+
+
+```{r, out.width="50%", echo=FALSE,fig.cap="<b>Minha causa favorita</b>"}
+knitr::include_graphics("https://media.giphy.com/media/8OVmHLPQj1amhLO2NJ/giphy.gif")
+```
+
+
+
+---
+# Xaringan: Começando/Hello World
+
+Recomendamos que você use a [IDE do RStudio](https://www.rstudio.com/products/rstudio/), mas não é uma obrigação.
+
+- Para criar um documento R Markdown a partir do menu `File -> New File -> R Markdown -> From Template -> Ninja Presentation`;<sup>1</sup>
+
+--
+
+- Para compilar o arquivo aperte o botão `Knit`;
+
+--
+
+- ou use o [RStudio Addin](https://rstudio.github.io/rstudioaddins/)<sup>2</sup> "Infinite Moon Reader" para ver uma prévia dos slides (toda ve que você atualizar e salvar o documento Rmd, os slides serão automaticamente carregados.
+
+.footnote[
+[1] Veja [#1](http://slides.yihui.org/xaringan/zh-CN.html) para a apresentação original.
+
+[2] Veja [#2](https://github.com/yihui/xaringan/issues/2) se você não encontra o template ou addin no RStudio.
+]
+
+---
+
+# Só a prática leva à fluência!
+
+```{r, out.width="35%", echo=FALSE,fig.cap="<center><b>Hands on!</b></center>"}
+knitr::include_graphics("https://media.giphy.com/media/L8K62iTDkzGX6/giphy.gif")
+```
+
+# Obrigada!
+
+[https://www.linkedin.com/company/rladiesbh/](https://www.linkedin.com/company/rladiesbh/)
+
+[https://www.linkedin.com/in/larissa-sayuri-santos/](https://www.linkedin.com/in/larissa-sayuri-santos/)
+
+---
+
+
+
+
+
