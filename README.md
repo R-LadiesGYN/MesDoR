@@ -1,6 +1,6 @@
 # Mês Do R
 
-Os Meetups planejados para o mês de Julho de 2020 são cursos introdutórios ao uso da linguagem R. São eles: Introdução a Linguagem R, Introdução a Manipualção de Dados, Introdução a Machine Learning utilizando o pacote caret e Introduzindo a ideia de SQL no R. São cursos com duração de 4 horas (podendo se estender se houver necessidade) e expositivos.
+Os Meetups planejados para o mês de Julho de 2020 são cursos introdutórios ao uso da linguagem R. São eles: Introdução a Linguagem R, Introdução a Manipualção de Dados, Oratória e Introduzindo a ideia de SQL no R. São cursos com duração de 4 horas (podendo se estender se houver necessidade) e expositivos.
 
 A intenção é ofertá-los aos sábados entre 14h - 18h. As datas referentes aos dias de curso são: 04/07, 11/07, 18/07 e 25/07.
 
